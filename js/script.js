@@ -59,10 +59,12 @@ function loadData() {
       dataType: "jsonp",
       // jsonp: "callback",
       success: function (response) {
-        console.log(response);
-        for (var i = 0; i < response[1].length; i++) {
-          articleStr = response[1][i];
-          $wikiElem.append('<li><a href="' + response[3][i] + '">' +
+        var articleList = response[1];
+        
+        for (var i = 0; i < articleList.length; i++) {
+          articleStr = articleList[i];
+          var url = 'http://en.wikipedia.org/wiki/' + articleStr;
+          $wikiElem.append('<li><a href="' + url + '">' +
                 articleStr + '</a></li>');
         }
         clearTimeout(wikiRequestTimeout);
